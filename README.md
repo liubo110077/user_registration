@@ -6,6 +6,8 @@ Consumer can use this web service to register, edit, read and (soft)delete singl
 ****
 
 ### Setting up and running 
+To simplify the dependencies, DB and MQ are both mocked. You can run it by following ways.
+
 a.How to set up your development environment in your laptop
 1. Clone this repo to your laptop
 2. Import this project as a maven project into your workspace
