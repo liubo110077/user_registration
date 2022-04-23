@@ -11,7 +11,7 @@ Consumer can use this web service to register ,edit, read and (soft)delete singl
 a.How to set up your development environment in your laptop
 1. Clone this repo to your laptop
 2. Import this project as a maven project into your workspace
-3. Start application by running Application class 
+3. Start application by running com.pccw.user.registration.Application class 
 
 b.How to run application by Docker
  
