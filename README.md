@@ -2,11 +2,16 @@
 
 This application is a standard spring boot RESTful web service.
 Consumer can use this web service to register, edit, read and (soft)delete single or multiple user(s).
+To simplify the dependencies, DB and MQ are both mocked. You don't need to installl any of them.
+Upon successful registration, send out a welcome email is implemented by a fake MQ in memory. 
+You will get the sending email message in log, the message is like "sending email to 2lcddd22c@sogou.com"
+
 
 ****
 
 ### Setting up and running 
-To simplify the dependencies, DB and MQ are both mocked. You can run it by following ways.
+
+You can run it by following ways.
 
 a.How to set up your development environment in your laptop
 1. Clone this repo to your laptop
