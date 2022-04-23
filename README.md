@@ -39,13 +39,14 @@ UT for POJO,Exception,Repository and Infrastructure is not mandatory.
 Swagger 
 * [Swagger address](http://localhost:8080/register/swagger-ui/index.html)
 
-Exception description
+Status code description
 
 |  code   | description  |
 | :-----| :----- |
 | 1001  | invalid email |
 | 1002  | no user found |
 | 1003  | incorrect password |
+| 200   | no exception |
 
 
 ### Performance Testing
