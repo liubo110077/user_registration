@@ -22,7 +22,7 @@ $ ./rundocker.sh
 
 
 ### Unit Testing
-Make sure to add UT for domain object and controller.
+There are two kinds of UT, domain object and controller.Be sure to add UT when you fixing bugs, adding new features, etc.
 
 UT for POJO,Exception,Repository and Infrastructure is not mandatory.
 
