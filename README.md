@@ -46,7 +46,7 @@ Please do performance testing before and after every change.
 Don't do any non-idempotent performance testing in UAT/QA/PROD environment.
 Non-idempotent operation including register, edit, delete and batch delete.
 
-```aidl
+```
 $ cd root of application
 $ cd registration/src/test/performance
 $ jmeter -n -t register_user.jmx -l register_user_result.jtl
