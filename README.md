@@ -33,6 +33,7 @@ There are two kinds of UT, domain object and controller.Be sure to add UT when y
 
 UT for POJO,Exception,Repository and Infrastructure is not mandatory.
 
+
 ### API instruction
 
 Swagger 
@@ -45,6 +46,7 @@ Exception description
 | 1001  | invalid email |
 | 1002  | no user found |
 | 1003  | incorrect password |
+
 
 ### Performance Testing
 
