@@ -41,12 +41,14 @@ Exception description
 
 ### Performance Testing
 
-We are using jmeter as the performance testing tool. You can get and learn it from official site https://jmeter.apache.org/.
+We are using jmeter as the performance testing tool. You can get and learn it from it's official site https://jmeter.apache.org/.
 
 Please do performance testing before and after every change.
 
 Don't do any non-idempotent performance testing in UAT/QA/PROD environment.
 Non-idempotent operation including register, edit, delete and batch delete.
+
+You can do performance testing by using below shell after setting up Jmeter.
 
 ```
 $ cd root of application
