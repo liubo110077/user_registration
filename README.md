@@ -14,7 +14,7 @@ a.How to set up your development environment in your laptop
 b.How to run application by Docker
  
 ```
-$ cd root of this application
+$ cd the root of this application
 $ ./rundocker.sh
 ```
 
