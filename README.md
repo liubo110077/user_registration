@@ -1,6 +1,4 @@
-# Getting Started
-
-### Reference Documentation
+# Reference Documentation
 
 This application is a standard spring boot RESTful web service.
 Consumer can use this web service to register ,edit, read and (soft)delete single or multiple user(s).
