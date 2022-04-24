@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -13,8 +14,8 @@ import java.util.concurrent.locks.ReentrantLock;
 @Component
 public class UserRepositoryMemoryImpl implements UserRepositoryInterface {
 
-    private static final Map<Integer, User> users = new LinkedHashMap();
-    private static final Set<String> emails = new HashSet();
+    private static final Map<Integer, User> users = new ConcurrentHashMap<>();
+    private static final Map<String,Integer> emails = new ConcurrentHashMap();
 
     private static Lock saveLock = new ReentrantLock();
     private static Lock updateLock = new ReentrantLock();
@@ -23,7 +24,7 @@ public class UserRepositoryMemoryImpl implements UserRepositoryInterface {
     private static IDGenerator idGenerator = new IDGenerator();
 
     public boolean isEmailUsed(String email){
-        if(emails.contains(email)){
+        if(emails.containsKey(email)){
             return true;
         }
 
@@ -42,7 +43,7 @@ public class UserRepositoryMemoryImpl implements UserRepositoryInterface {
             final int id = idGenerator.generateID();
             user.setId(id);
             users.put(id, user);
-            emails.add(user.getEmail().getEmailAddress());
+            emails.put(user.getEmail().getEmailAddress(),id);
 
         } catch (Exception e) {
             log.info("failed to register a user", e);
