@@ -3,6 +3,9 @@ package com.pccw.user.registration.service;
 import com.pccw.user.registration.domain.user.entity.User;
 import com.pccw.user.registration.domain.user.repository.UserRepositoryInterface;
 import com.pccw.user.registration.domain.user.entity.UserFactory;
+import com.pccw.user.registration.infrastructure.mq.EmailNotification;
+import com.pccw.user.registration.infrastructure.mq.MessageQueueProducer;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -19,12 +23,24 @@ public class UserService {
     @Autowired
     UserRepositoryInterface userRepository;
 
+    @Autowired
+    private MessageQueueProducer messageQueueProducer;
+
     @Transactional
     public User register(String email,String encryptedPassword) {
 
 
         final User user = userFactory.create(email,encryptedPassword);
-        return user.register();
+        final User register = user.register();
+
+        //send email message to MQ
+        boolean succeed = messageQueueProducer.offer(EmailNotification.to(email));
+
+        if (!succeed) {
+            //TODO add alert through email,phone or any other device.
+            log.error("register succeed, but can not sent email to {}!", email);
+        }
+        return register;
     }
 
     @Transactional

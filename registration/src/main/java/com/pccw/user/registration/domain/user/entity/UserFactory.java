@@ -29,7 +29,6 @@ public class UserFactory {
         user.setEmail(email);
         user.setEncryptedPassword(encryptedPassword);
         user.setUserRepository(userRepository);
-        user.setMessageQueueProducer(messageQueueProducer);
         return user;
     }
 
@@ -37,7 +36,6 @@ public class UserFactory {
     public User create(int id, String email) {
         User user = new User(id, email);
         user.setUserRepository(userRepository);
-        user.setMessageQueueProducer(messageQueueProducer);
         return user;
     }
 }

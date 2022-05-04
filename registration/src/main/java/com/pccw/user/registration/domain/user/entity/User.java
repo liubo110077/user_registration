@@ -2,8 +2,6 @@ package com.pccw.user.registration.domain.user.entity;
 
 import com.pccw.user.registration.api.exception.IncorrectPasswordException;
 import com.pccw.user.registration.domain.user.repository.UserRepositoryInterface;
-import com.pccw.user.registration.infrastructure.mq.EmailNotification;
-import com.pccw.user.registration.infrastructure.mq.MessageQueueProducer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -57,13 +55,6 @@ public class User {
         }
 
         final User user = userRepository.save(this);
-        //send email message to MQ
-        boolean succeed = messageQueueProducer.offer(EmailNotification.to(this.email.getEmailAddress()));
-
-        if (!succeed) {
-            //TODO add alert through email,phone or any other device.
-            log.error("register succeed, but can not sent email to {}!", this.email.getEmailAddress());
-        }
 
         return user;
     }
@@ -130,7 +121,7 @@ public class User {
 
     private UserRepositoryInterface userRepository;
 
-    private MessageQueueProducer messageQueueProducer;
+
 
     @Override
     public boolean equals(Object o) {
